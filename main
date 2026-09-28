@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 9 E-Portfolio</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background: #312e81;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: #4f46e5;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        .welcome {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .welcome h2 {
+            color: #4f46e5;
+            margin-bottom: 10px;
+        }
+
+        .profile {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            color: #4f46e5;
+            margin-bottom: 15px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #3730a3;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .project {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #4f46e5;
+        }
+
+        .project h3 {
+            color: #312e81;
+            margin-bottom: 8px;
+        }
+
+        .project p {
+            margin-bottom: 10px;
+        }
+
+        .delete-btn {
+            background: #dc2626;
+            padding: 8px 12px;
+            font-size: 13px;
+        }
+
+        .delete-btn:hover {
+            background: #991b1b;
+        }
+
+        footer {
+            background: #312e81;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 700px) {
+            .profile {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>📚 Grade 9 E-Portfolio</h1>
+        <p>My Learning Journey, Projects & Achievements</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#profile">My Profile</a>
+        <a href="#projects">Projects</a>
+        <a href="#reflection">Reflection</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- HOME -->
+        <section id="home" class="welcome">
+            <h2>Welcome to My E-Portfolio!</h2>
+            <p>
+                This portfolio is a place where I can collect and display
+                my Grade 9 projects, assignments, achievements, and reflections.
+                It shows my progress and what I have learned throughout the school year.
+            </p>
+        </section>
+
+        <!-- PROFILE -->
+        <section id="profile" class="card">
+            <h2>👩‍🎓 My Profile</h2>
+
+            <div class="profile">
+                <div>
+                    <label>Student Name:</label>
+                    <input type="text" id="studentName"
+                           placeholder="Enter your name">
+
+                    <label>Grade:</label>
+                    <input type="text" value="Grade 9" readonly>
+
+                    <label>School:</label>
+                    <input type="text" id="school"
+                           placeholder="Enter your school">
+                </div>
+
+                <div>
+                    <label>About Me:</label>
+                    <textarea id="about"
+                              placeholder="Write something about yourself..."></textarea>
+
+                    <button onclick="saveProfile()">Save Profile</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="card">
+            <h2>📁 My Projects</h2>
+
+            <label>Project Title:</label>
+            <input type="text" id="projectTitle"
+                   placeholder="Example: Science Volcano Project">
+
+            <label>Subject:</label>
+            <select id="projectSubject">
+                <option>Science</option>
+                <option>Mathematics</option>
+                <option>English</option>
+                <option>Social Studies</option>
+                <option>Computer Studies</option>
+                <option>Art</option>
+                <option>Other</option>
+            </select>
+
+            <label>Description:</label>
+            <textarea id="projectDescription"
+                      placeholder="Describe your project..."></textarea>
+
+            <button onclick="addProject()">➕ Add Project</button>
+
+            <br><br>
+
+            <div class="projects" id="projectList">
+                <!-- Projects will appear here -->
+            </div>
+        </section>
+
+        <!-- REFLECTION -->
+        <section id="reflection" class="card">
+            <h2>💭 My Reflection</h2>
+
+            <label>What did I learn?</label>
+            <textarea id="learning"
+                      placeholder="Write about what you learned..."></textarea>
+
+            <label>What was challenging?</label>
+            <textarea id="challenge"
+                      placeholder="Describe something that was difficult..."></textarea>
+
+            <label>What would I improve?</label>
+            <textarea id="improve"
+                      placeholder="Write about what you would do differently..."></textarea>
+
+            <button onclick="saveReflection()">Save Reflection</button>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Grade 9 E-Portfolio | My Learning Journey</p>
+    </footer>
+
+
+    <script>
+
+        // Load saved projects when the page opens
+        window.onload = function() {
+            loadProjects();
+            loadProfile();
+            loadReflection();
+        };
+
+
+        // SAVE PROFILE
+        function saveProfile() {
+            const profile = {
+                name: document.getElementById("studentName").value,
+                school: document.getElementById("school").value,
+                about: document.getElementById("about").value
+            };
+
+            localStorage.setItem("profile", JSON.stringify(profile));
+
+            alert("Profile saved successfully!");
+        }
+
+
+        // LOAD PROFILE
+        function loadProfile() {
+            const savedProfile = localStorage.getItem("profile");
+
+            if (savedProfile) {
+                const profile = JSON.parse(savedProfile);
+
+                document.getElementById("studentName").value = profile.name;
+                document.getElementById("school").value = profile.school;
+                document.getElementById("about").value = profile.about;
+            }
+        }
+
+
+        // ADD PROJECT
+        function addProject() {
+
+            const title = document.getElementById("projectTitle").value;
+            const subject = document.getElementById("projectSubject").value;
+            const description = document.getElementById("projectDescription").value;
+
+            if (title === "" || description === "") {
+                alert("Please enter a project title and description.");
+                return;
+            }
+
+            const project = {
+                title: title,
+                subject: subject,
+                description: description
+            };
+
+            let projects = JSON.parse(localStorage.getItem("projects")) || [];
+
+            projects.push(project);
+
+            localStorage.setItem("projects", JSON.stringify(projects));
+
+            document.getElementById("projectTitle").value = "";
+            document.getElementById("projectDescription").value = "";
+
+            loadProjects();
+        }
+
+
+        // DISPLAY PROJECTS
+        function loadProjects() {
+
+            const projectList = document.getElementById("projectList");
+
+            projectList.innerHTML = "";
+
+            let projects = JSON.parse(localStorage.getItem("projects")) || [];
+
+            if (projects.length === 0) {
+                projectList.innerHTML =
+                    "<p>No projects added yet. Add your first project above!</p>";
+                return;
+            }
+
+            projects.forEach(function(project, index) {
+
+                const projectDiv = document.createElement("div");
+
+                projectDiv.className = "project";
+
+                projectDiv.innerHTML = `
+                    <h3>${project.title}</h3>
+                    <p><strong>Subject:</strong> ${project.subject}</p>
+                    <p>${project.description}</p>
+
+                    <button class="delete-btn"
+                        onclick="deleteProject(${index})">
+                        Delete
+                    </button>
+                `;
+
+                projectList.appendChild(projectDiv);
+            });
+        }
+
+
+        // DELETE PROJECT
+        function deleteProject(index) {
+
+            let projects = JSON.parse(localStorage.getItem("projects")) || [];
+
+            projects.splice(index, 1);
+
+            localStorage.setItem("projects", JSON.stringify(projects));
+
+            loadProjects();
+        }
+
+
+        // SAVE REFLECTION
+        function saveReflection() {
+
+            const reflection = {
+                learning: document.getElementById("learning").value,
+                challenge: document.getElementById("challenge").value,
+                improve: document.getElementById("improve").value
+            };
+
+            localStorage.setItem(
+                "reflection",
+                JSON.stringify(reflection)
+            );
+
+            alert("Reflection saved successfully!");
+        }
+
+
+        // LOAD REFLECTION
+        function loadReflection() {
+
+            const savedReflection =
+                localStorage.getItem("reflection");
+
+            if (savedReflection) {
+
+                const reflection =
+                    JSON.parse(savedReflection);
+
+                document.getElementById("learning").value =
+                    reflection.learning;
+
+                document.getElementById("challenge").value =
+                    reflection.challenge;
+
+                document.getElementById("improve").value =
+                    reflection.improve;
+            }
+        }
+
+    </script>
+
+</body>
+</html>
